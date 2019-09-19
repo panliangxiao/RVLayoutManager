@@ -10,9 +10,12 @@ import android.view.View;
  * 时间选择器控件
  */
 public class PickerLayoutManager extends LinearLayoutManager {
-    private static final String TAG = "PickerLayoutManager";
+    private static final String TAG = PickerLayoutManager.class.getSimpleName();
 
     private float mScale = 0.5f;
+    /**
+     * 是否具有透明效果
+     */
     private boolean mIsAlpha = true;
     private LinearSnapHelper mLinearSnapHelper; //使用LinearSnapHelper
     private OnSelectedViewListener mOnSelectedViewListener;
@@ -54,8 +57,8 @@ public class PickerLayoutManager extends LinearLayoutManager {
      */
     @Override
     public boolean isAutoMeasureEnabled() {
-//        if (mItemCount > 0)
-//            return false;
+        if (mItemCount > 0)
+            return false;
         return super.isAutoMeasureEnabled();
     }
 
