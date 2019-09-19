@@ -35,12 +35,11 @@ public class PickerLayoutManager extends LinearLayoutManager {
         this.mOrientation = orientation;
         this.mIsAlpha = isAlpha;
         this.mScale = scale;
-//        if (mItemCount != 0) setAutoMeasureEnabled(false);
     }
 
     /**
      * 添加LinearSnapHelper
-     * @param view
+     * 获取RecyclerView
      */
     @Override
     public void onAttachedToWindow(RecyclerView view) {
@@ -49,20 +48,20 @@ public class PickerLayoutManager extends LinearLayoutManager {
         mLinearSnapHelper.attachToRecyclerView(view);
     }
 
+    /**
+     * 指定数量后关闭自动布局
+     * @return
+     */
     @Override
     public boolean isAutoMeasureEnabled() {
-        if (mItemCount > 0)
-            return false;
+//        if (mItemCount > 0)
+//            return false;
         return super.isAutoMeasureEnabled();
     }
 
     /**
-     * 没有指定显示条目的数量时，RecyclerView的宽高由自身确定
+     * 没有指定显示条目的数量时，走原有Measure逻辑
      * 指定显示条目的数量时，根据方向分别计算RecyclerView的宽高
-     * @param recycler
-     * @param state
-     * @param widthSpec
-     * @param heightSpec
      */
     @Override
     public void onMeasure(RecyclerView.Recycler recycler, RecyclerView.State state, int widthSpec, int heightSpec) {
@@ -76,21 +75,20 @@ public class PickerLayoutManager extends LinearLayoutManager {
 
             if (mOrientation == HORIZONTAL) {
                 int paddingHorizontal = (mItemCount - 1) * mItemViewWidth / 2;
+                //允许子view绘制在padding区域
                 mRecyclerView.setClipToPadding(false);
                 mRecyclerView.setPadding(paddingHorizontal,0,paddingHorizontal,0);
-//                setMeasuredDimension(mItemViewWidth * mItemCount, mItemViewHeight);
                 int newWidthSpec = View.MeasureSpec.makeMeasureSpec(mItemViewWidth * mItemCount, View.MeasureSpec.EXACTLY);
                 super.onMeasure(recycler,state,newWidthSpec,heightSpec);
             } else if (mOrientation == VERTICAL) {
                 int paddingVertical = (mItemCount - 1) * mItemViewHeight / 2;
                 mRecyclerView.setClipToPadding(false);
                 mRecyclerView.setPadding(0,paddingVertical,0,paddingVertical);
-//                setMeasuredDimension(mItemViewWidth, mItemViewHeight * mItemCount);
                 int newHeightSpec = View.MeasureSpec.makeMeasureSpec(mItemViewHeight * mItemCount, View.MeasureSpec.EXACTLY);
                 super.onMeasure(recycler,state,widthSpec,newHeightSpec);
 
             }
-        }else {
+        } else {
             super.onMeasure(recycler,state,widthSpec,heightSpec);
         }
 
