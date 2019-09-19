@@ -164,7 +164,7 @@ public class PickerLayoutManager extends LinearLayoutManager {
     @Override
     public void onScrollStateChanged(int state) {
         super.onScrollStateChanged(state);
-        if (state == 0) {
+        if (state == RecyclerView.SCROLL_STATE_IDLE) {
             if (mOnSelectedViewListener != null && mLinearSnapHelper != null) {
                 View view = mLinearSnapHelper.findSnapView(this);
                 int position = getPosition(view);
