@@ -150,6 +150,10 @@ public class CardSwipeLayoutManager extends RecyclerView.LayoutManager {
         }
     };
 
+    public ItemTouchHelper getItemTouchHelper() {
+        return mItemTouchHelper;
+    }
+
     /**
      * step1 生成LayoutParams
      *

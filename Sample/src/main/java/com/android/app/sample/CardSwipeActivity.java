@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.app.layoutmanger.swipe.CardSwipeLayoutManager;
+import com.android.app.layoutmanger.swipe.DefaultItemAnimator;
 import com.android.app.layoutmanger.swipe.OnCardSwipeListener;
 
 import java.util.ArrayList;
@@ -22,7 +23,11 @@ public class CardSwipeActivity extends AppCompatActivity {
     private static final String TAG = CardSwipeActivity.class.getSimpleName();
 
     private RecyclerView mRecyclerView;
+    private ImageView unlike;
+    private ImageView like;
     private MyAdapter mAdapter = new MyAdapter();
+
+    CardSwipeLayoutManager swipeLayoutManager;
 
     private List<UserInfo> mList = new ArrayList<>();
 
@@ -31,8 +36,20 @@ public class CardSwipeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_card_swipe);
         mRecyclerView = findViewById(R.id.recycler_view);
+        unlike = findViewById(R.id.dislike);
+        like = findViewById(R.id.like);
+        unlike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
+        like.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
         addData();
-        CardSwipeLayoutManager swipeLayoutManager = new CardSwipeLayoutManager(new OnCardSwipeListener() {
+        swipeLayoutManager = new CardSwipeLayoutManager(new OnCardSwipeListener() {
             @Override
             public void onSwiping(RecyclerView.ViewHolder viewHolder, float ratio, int direction) {
                 Log.i(TAG, "ratio : " + ratio + "-" + "direction : " + direction);
@@ -52,6 +69,11 @@ public class CardSwipeActivity extends AppCompatActivity {
         });
         mRecyclerView.setLayoutManager(swipeLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
+
+//        DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
+//        defaultItemAnimator.setAddDuration(1000);
+//        defaultItemAnimator.setRemoveDuration(1000);
+//        mRecyclerView.setItemAnimator(defaultItemAnimator);
     }
 
     /**
