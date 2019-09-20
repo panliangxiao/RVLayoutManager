@@ -47,7 +47,7 @@ public class CardSwipeActivity extends AppCompatActivity {
 
             @Override
             public void onSwipedClear() {
-//                addData();
+                addData();
             }
         });
         mRecyclerView.setLayoutManager(swipeLayoutManager);
