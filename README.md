@@ -4,7 +4,7 @@
 align=center>
 ## 仿探探card效果CardSwipeLayoutManager
 ### 特点
-- 精简api
+- 精简api 只需一个LayoutManager搞定
 ### 使用
 ```
 CardSwipeLayoutManager swipeLayoutManager = new CardSwipeLayoutManager(new OnCardSwipeListener() {
