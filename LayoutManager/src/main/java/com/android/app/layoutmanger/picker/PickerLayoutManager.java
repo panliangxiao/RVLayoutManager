@@ -68,13 +68,18 @@ public class PickerLayoutManager extends LinearLayoutManager {
      */
     @Override
     public void onMeasure(RecyclerView.Recycler recycler, RecyclerView.State state, int widthSpec, int heightSpec) {
-        if (getItemCount() != 0 && mItemCount != 0) {
+        if (state.getItemCount() == 0) {
+            removeAndRecycleAllViews(recycler);
+            return;
+        }
 
-            View view = recycler.getViewForPosition(0);
-            measureChildWithMargins(view, widthSpec, heightSpec);
+        View view = recycler.getViewForPosition(0);
+        measureChildWithMargins(view, widthSpec, heightSpec);
 
-            mItemViewWidth = view.getMeasuredWidth();
-            mItemViewHeight = view.getMeasuredHeight();
+        mItemViewWidth = view.getMeasuredWidth();
+        mItemViewHeight = view.getMeasuredHeight();
+
+        if (mItemCount > 0) {
 
             if (mOrientation == HORIZONTAL) {
                 int paddingHorizontal = (mItemCount - 1) * mItemViewWidth / 2;
@@ -86,13 +91,22 @@ public class PickerLayoutManager extends LinearLayoutManager {
             } else if (mOrientation == VERTICAL) {
                 int paddingVertical = (mItemCount - 1) * mItemViewHeight / 2;
                 mRecyclerView.setClipToPadding(false);
-                mRecyclerView.setPadding(0,paddingVertical,0,paddingVertical);
+                mRecyclerView.setPadding(0, paddingVertical, 0, paddingVertical);
                 int newHeightSpec = View.MeasureSpec.makeMeasureSpec(mItemViewHeight * mItemCount, View.MeasureSpec.EXACTLY);
-                super.onMeasure(recycler,state,widthSpec,newHeightSpec);
-
+                super.onMeasure(recycler, state, widthSpec, newHeightSpec);
             }
-        } else {
-            super.onMeasure(recycler,state,widthSpec,heightSpec);
+        }else {
+            if (mOrientation == HORIZONTAL) {
+                int paddingHorizontal = (getWidth() - mItemViewWidth) / 2;
+                //允许子view绘制在padding区域
+                mRecyclerView.setClipToPadding(false);
+                mRecyclerView.setPadding(paddingHorizontal,0,paddingHorizontal,0);
+            } else if (mOrientation == VERTICAL) {
+                int paddingVertical = (getHeight() - mItemViewHeight) / 2;
+                mRecyclerView.setClipToPadding(false);
+                mRecyclerView.setPadding(0, paddingVertical, 0, paddingVertical);
+            }
+            super.onMeasure(recycler, state, widthSpec, heightSpec);
         }
 
     }
