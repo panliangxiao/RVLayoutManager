@@ -60,13 +60,15 @@ public class PickerActivity extends AppCompatActivity {
         mTvHour = findViewById(R.id.tv_hour);
         mTvMinute = findViewById(R.id.tv_minute);
 
-        mPickerLayoutManager1 = new PickerLayoutManager(this, PickerLayoutManager.VERTICAL, false,3,0.4f,true);
+        mPickerLayoutManager1 = new PickerLayoutManager(this, PickerLayoutManager.VERTICAL, false,0,0.4f,true);
         mRecyclerView1.setLayoutManager(mPickerLayoutManager1);
         mRecyclerView1.setAdapter(new MyAdapter(mHours));
+        mRecyclerView1.scrollToPosition(0);
 
-        mPickerLayoutManager2 = new PickerLayoutManager(this, PickerLayoutManager.VERTICAL, false,3,0.4f,true);
+        mPickerLayoutManager2 = new PickerLayoutManager(this, PickerLayoutManager.VERTICAL, false,0,0.4f,true);
         mRecyclerView2.setLayoutManager(mPickerLayoutManager2);
         mRecyclerView2.setAdapter(new MyAdapter(mMinutes));
+        mRecyclerView2.scrollToPosition(0);
 
     }
 

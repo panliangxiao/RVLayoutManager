@@ -131,6 +131,36 @@ public class PickerLayoutManager extends LinearLayoutManager {
     }
 
     @Override
+    public void smoothScrollToPosition(RecyclerView recyclerView, RecyclerView.State state, int position) {
+        if (mOrientation == HORIZONTAL){
+            scaleHorizontalChildView();
+        }else if (mOrientation == VERTICAL){
+            scaleVerticalChildView();
+        }
+        super.smoothScrollToPosition(recyclerView, state, position);
+    }
+
+    @Override
+    public void scrollToPosition(int position) {
+        if (mOrientation == HORIZONTAL){
+            scaleHorizontalChildView();
+        }else if (mOrientation == VERTICAL){
+            scaleVerticalChildView();
+        }
+        super.scrollToPosition(position);
+    }
+
+    @Override
+    public void scrollToPositionWithOffset(int position, int offset) {
+        if (mOrientation == HORIZONTAL){
+            scaleHorizontalChildView();
+        }else if (mOrientation == VERTICAL){
+            scaleVerticalChildView();
+        }
+        super.scrollToPositionWithOffset(position, offset);
+    }
+
+    @Override
     public int scrollVerticallyBy(int dy, RecyclerView.Recycler recycler, RecyclerView.State state) {
         scaleVerticalChildView();
         return super.scrollVerticallyBy(dy, recycler, state);
