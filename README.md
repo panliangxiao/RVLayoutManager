@@ -3,7 +3,7 @@
 ### 特点
 - 支持指定滚轮固定个数显示
 ```
-mPickerLayoutManager2 = new PickerLayoutManager(this, PickerLayoutManager.VERTICAL, false,0,0.4f,true);
+mPickerLayoutManager2 = new PickerLayoutManager(this, PickerLayoutManager.VERTICAL, false,3,0.4f,true);
 mRecyclerView2.setLayoutManager(mPickerLayoutManager2);
 mRecyclerView2.setAdapter(new MyAdapter(mMinutes));
 ```
