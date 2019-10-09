@@ -9,17 +9,17 @@ import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.android.app.smartadapter.bridge.HolderHelper;
-import com.android.app.smartadapter.cell.ICell;
-import com.android.app.smartadapter.factory.CellWarehouse;
-import com.android.app.smartadapter.holder.RVSmartHolder;
+import com.android.app.smartadapter.protocol.IRvSmartBinder;
+import com.android.app.smartadapter.cell.IRvSmartCell;
+import com.android.app.smartadapter.factory.IRvCellWarehouse;
+import com.android.app.smartadapter.holder.RvSmartHolder;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class RVSmartAdapter<T extends ICell> extends RecyclerView.Adapter<RVSmartHolder> {
+public class RVSmartAdapter<T extends IRvSmartCell> extends RecyclerView.Adapter<RvSmartHolder> {
 
     private List<T> mDataList = new ArrayList<>();
 
@@ -39,11 +39,11 @@ public class RVSmartAdapter<T extends ICell> extends RecyclerView.Adapter<RVSmar
 
     @NonNull
     @Override
-    public RVSmartHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public RvSmartHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         String type = getCellTypeFromItemType(i);
         try {
-            Class<? extends HolderHelper> clz = CellWarehouse.getInstance().getHolder(type);
-            HolderHelper holder = clz.newInstance();
+            Class<? extends IRvSmartBinder> clz = IRvCellWarehouse.getInstance().getHolder(type);
+            IRvSmartBinder holder = clz.newInstance();
             Log.e("RVSmartAdapter", "come in : " + type);
             return createViewHolder(holder, viewGroup.getContext(), viewGroup);
         }catch (Throwable error){
@@ -52,15 +52,15 @@ public class RVSmartAdapter<T extends ICell> extends RecyclerView.Adapter<RVSmar
         return null;
     }
 
-    public <V extends View> RVSmartHolder<T, V> createViewHolder(
-            @NonNull final HolderHelper<T, V> binder, @NonNull final Context context, final ViewGroup parent){
+    public <V extends View> RvSmartHolder<T, V> createViewHolder(
+            @NonNull final IRvSmartBinder<T, V> binder, @NonNull final Context context, final ViewGroup parent){
         V view = binder.createView(context, parent);
-        return new RVSmartHolder<>(view, binder);
+        return new RvSmartHolder<>(view, binder);
     }
 
 
     @Override
-    public void onBindViewHolder(@NonNull RVSmartHolder rvSmartHolder, int i) {
+    public void onBindViewHolder(@NonNull RvSmartHolder rvSmartHolder, int i) {
         T data = mDataList.get(i);
         rvSmartHolder.bindHolder(data);
     }
@@ -94,7 +94,7 @@ public class RVSmartAdapter<T extends ICell> extends RecyclerView.Adapter<RVSmar
     }
 
     @Override
-    public void onViewRecycled(@NonNull RVSmartHolder holder) {
+    public void onViewRecycled(@NonNull RvSmartHolder holder) {
         super.onViewRecycled(holder);
         holder.unBindHolder();
     }

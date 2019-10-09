@@ -1,11 +1,13 @@
-package com.android.app.smartadapter.bridge;
+package com.android.app.smartadapter.protocol;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 
-public interface HolderHelper<T, V extends View> {
+import com.android.app.smartadapter.cell.IRvSmartCell;
+
+public interface IRvSmartBinder<T extends IRvSmartCell, V extends View> {
 
     @NonNull
     V createView(Context context, ViewGroup parent);

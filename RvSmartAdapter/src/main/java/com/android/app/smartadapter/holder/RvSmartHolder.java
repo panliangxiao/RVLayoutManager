@@ -4,17 +4,18 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.android.app.smartadapter.bridge.HolderHelper;
+import com.android.app.smartadapter.cell.IRvSmartCell;
+import com.android.app.smartadapter.protocol.IRvSmartBinder;
 
-public class RVSmartHolder<T, V extends View> extends RecyclerView.ViewHolder {
+public class RvSmartHolder<T extends IRvSmartCell, V extends View> extends RecyclerView.ViewHolder {
 
-    public HolderHelper<T, V> controller;
+    public IRvSmartBinder<T, V> controller;
 
     public V itemView;
 
     public T data;
 
-    public RVSmartHolder(@NonNull V itemView, @NonNull HolderHelper<T, V> binder) {
+    public RvSmartHolder(@NonNull V itemView, @NonNull IRvSmartBinder<T, V> binder) {
         super(itemView);
         this.itemView = itemView;
         this.controller = binder;

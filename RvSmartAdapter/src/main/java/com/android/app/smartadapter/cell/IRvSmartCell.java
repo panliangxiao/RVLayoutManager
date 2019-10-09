@@ -1,5 +1,5 @@
 package com.android.app.smartadapter.cell;
 
-public interface ICell {
+public interface IRvSmartCell {
     String getType();
 }

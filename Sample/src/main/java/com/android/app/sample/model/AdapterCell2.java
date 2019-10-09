@@ -5,15 +5,18 @@ import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.android.app.sample.R;
-import com.android.app.smartadapter.bridge.HolderHelper;
-import com.android.app.smartadapter.cell.ICell;
+import com.android.app.smartadapter.protocol.IRvSmartBinder;
+import com.android.app.smartadapter.cell.IRvSmartCell;
+/**
+ * cell样式2
+ */
+public class AdapterCell2 implements IRvSmartBinder<IRvSmartCell, View> {
 
-public class AdapterCell2 implements HolderHelper<ICell, View> {
-
-    private TextView textView;
+    private Button textView;
 
     @NonNull
     @Override
@@ -24,12 +27,12 @@ public class AdapterCell2 implements HolderHelper<ICell, View> {
     }
 
     @Override
-    public void mountView(@NonNull ICell data, @NonNull View view) {
+    public void mountView(@NonNull IRvSmartCell data, @NonNull View view) {
         textView.setText("测试 : " + data.getType());
     }
 
     @Override
-    public void unmountView(@NonNull ICell data, @NonNull View view) {
+    public void unmountView(@NonNull IRvSmartCell data, @NonNull View view) {
 
     }
 }

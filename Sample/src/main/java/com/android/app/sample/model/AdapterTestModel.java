@@ -1,8 +1,8 @@
 package com.android.app.sample.model;
 
-import com.android.app.smartadapter.cell.ICell;
+import com.android.app.smartadapter.cell.IRvSmartCell;
 
-public class AdapterTestModel implements ICell {
+public class AdapterTestModel implements IRvSmartCell {
 
     private String itemType;
 

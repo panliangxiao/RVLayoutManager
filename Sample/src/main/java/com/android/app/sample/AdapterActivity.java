@@ -10,8 +10,8 @@ import com.android.app.sample.model.AdapterCell1;
 import com.android.app.sample.model.AdapterCell2;
 import com.android.app.sample.model.AdapterTestModel;
 import com.android.app.smartadapter.RVSmartAdapter;
-import com.android.app.smartadapter.cell.ICell;
-import com.android.app.smartadapter.factory.CellWarehouse;
+import com.android.app.smartadapter.cell.IRvSmartCell;
+import com.android.app.smartadapter.factory.IRvCellWarehouse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ import java.util.List;
 public class AdapterActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    List<ICell> list = new ArrayList<>();
+    List<IRvSmartCell> list = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,8 +29,8 @@ public class AdapterActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view);
 
 
-        CellWarehouse.getInstance().register("0", AdapterCell1.class);
-        CellWarehouse.getInstance().register("1", AdapterCell2.class);
+        IRvCellWarehouse.getInstance().register("0", AdapterCell1.class);
+        IRvCellWarehouse.getInstance().register("1", AdapterCell2.class);
 
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -40,7 +40,7 @@ public class AdapterActivity extends AppCompatActivity {
             list.add(model);
         }
 
-        RVSmartAdapter<ICell> smartAdapter = new RVSmartAdapter<>();
+        RVSmartAdapter<IRvSmartCell> smartAdapter = new RVSmartAdapter<>();
         smartAdapter.setData(list);
         recyclerView.setAdapter(smartAdapter);
 

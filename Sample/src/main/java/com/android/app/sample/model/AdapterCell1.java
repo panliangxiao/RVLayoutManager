@@ -7,10 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.app.sample.R;
-import com.android.app.smartadapter.bridge.HolderHelper;
-import com.android.app.smartadapter.cell.ICell;
+import com.android.app.smartadapter.protocol.IRvSmartBinder;
+import com.android.app.smartadapter.cell.IRvSmartCell;
 
-public class AdapterCell1 implements HolderHelper<ICell, View> {
+/**
+ * cell样式1
+ */
+public class AdapterCell1 implements IRvSmartBinder<IRvSmartCell, View> {
     @NonNull
     @Override
     public View createView(Context context, ViewGroup parent) {
@@ -18,12 +21,12 @@ public class AdapterCell1 implements HolderHelper<ICell, View> {
     }
 
     @Override
-    public void mountView(@NonNull ICell data, @NonNull View view) {
+    public void mountView(@NonNull IRvSmartCell data, @NonNull View view) {
 
     }
 
     @Override
-    public void unmountView(@NonNull ICell data, @NonNull View view) {
+    public void unmountView(@NonNull IRvSmartCell data, @NonNull View view) {
 
     }
 }
