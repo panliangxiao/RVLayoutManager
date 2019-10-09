@@ -1,4 +1,4 @@
-package com.android.app.smartadapter.factory;
+package com.android.app.smartadapter.core;
 
 import android.view.View;
 
@@ -15,9 +15,9 @@ public class IRvCellWarehouse {
     }
 
     public static IRvCellWarehouse getInstance(){
-        return Inner.instance;
+        return Holder.instance;
     }
-    private static class Inner {
+    private static class Holder {
         private static final IRvCellWarehouse instance = new IRvCellWarehouse();
     }
 

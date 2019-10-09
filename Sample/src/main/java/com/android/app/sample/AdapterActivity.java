@@ -11,7 +11,7 @@ import com.android.app.sample.model.AdapterCell2;
 import com.android.app.smartadapter.RVSmartAdapter;
 import com.android.app.smartadapter.cell.IRvSmartCell;
 import com.android.app.smartadapter.cell.RvSmartBaseCell;
-import com.android.app.smartadapter.factory.IRvCellWarehouse;
+import com.android.app.smartadapter.core.IRvCellWarehouse;
 
 import java.util.ArrayList;
 import java.util.List;

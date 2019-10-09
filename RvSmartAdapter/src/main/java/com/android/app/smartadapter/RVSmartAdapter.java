@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 import com.android.app.smartadapter.protocol.IRvSmartBinder;
 import com.android.app.smartadapter.cell.IRvSmartCell;
-import com.android.app.smartadapter.factory.IRvCellWarehouse;
+import com.android.app.smartadapter.core.IRvCellWarehouse;
 import com.android.app.smartadapter.holder.RvSmartHolder;
 
 import java.util.ArrayList;
