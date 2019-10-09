@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class RVSmartAdapter<T extends IRvSmartCell> extends RecyclerView.Adapter<RvSmartHolder> {
+public class RVSmartAdapter<T extends IRvSmartCell> extends RecyclerView.Adapter<RvSmartHolder<T, ? extends View>> {
 
     private List<T> mDataList = new ArrayList<>();
 
@@ -39,12 +39,12 @@ public class RVSmartAdapter<T extends IRvSmartCell> extends RecyclerView.Adapter
 
     @NonNull
     @Override
-    public RvSmartHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public RvSmartHolder<T, ? extends View> onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         String type = getCellTypeFromItemType(i);
         try {
             Class<? extends IRvSmartBinder> clz = IRvCellWarehouse.getInstance().getHolder(type);
             IRvSmartBinder holder = clz.newInstance();
-            Log.e("RVSmartAdapter", "come in : " + type);
+            Log.e("RVSmartAdapter", " : " + type);
             return createViewHolder(holder, viewGroup.getContext(), viewGroup);
         }catch (Throwable error){
 
@@ -60,7 +60,7 @@ public class RVSmartAdapter<T extends IRvSmartCell> extends RecyclerView.Adapter
 
 
     @Override
-    public void onBindViewHolder(@NonNull RvSmartHolder rvSmartHolder, int i) {
+    public void onBindViewHolder(@NonNull RvSmartHolder<T, ? extends View> rvSmartHolder, int i) {
         T data = mDataList.get(i);
         rvSmartHolder.bindHolder(data);
     }
