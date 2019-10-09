@@ -8,9 +8,9 @@ import android.support.v7.widget.RecyclerView;
 
 import com.android.app.sample.model.AdapterCell1;
 import com.android.app.sample.model.AdapterCell2;
-import com.android.app.sample.model.AdapterTestModel;
 import com.android.app.smartadapter.RVSmartAdapter;
 import com.android.app.smartadapter.cell.IRvSmartCell;
+import com.android.app.smartadapter.cell.RvSmartBaseCell;
 import com.android.app.smartadapter.factory.IRvCellWarehouse;
 
 import java.util.ArrayList;
@@ -36,7 +36,7 @@ public class AdapterActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         for (int i = 0; i < 50; i ++){
-            AdapterTestModel model = new AdapterTestModel(i % 2 + "");
+            RvSmartBaseCell model = new RvSmartBaseCell(i % 2 + "");
             list.add(model);
         }
 
