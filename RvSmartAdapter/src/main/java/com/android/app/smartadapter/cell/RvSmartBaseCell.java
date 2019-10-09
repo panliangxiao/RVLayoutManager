@@ -1,7 +1,7 @@
 package com.android.app.smartadapter.cell;
 
 public class RvSmartBaseCell implements IRvSmartCell {
-    private String itemType;
+    protected String itemType;
 
     public RvSmartBaseCell(String itemType) {
         this.itemType = itemType;

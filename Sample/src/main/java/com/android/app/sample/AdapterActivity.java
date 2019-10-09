@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.android.app.sample.model.AdapterCell1;
 import com.android.app.sample.model.AdapterCell2;
+import com.android.app.sample.model.AdpModel;
 import com.android.app.smartadapter.RVSmartAdapter;
 import com.android.app.smartadapter.cell.IRvSmartCell;
 import com.android.app.smartadapter.cell.RvSmartBaseCell;
@@ -28,15 +29,11 @@ public class AdapterActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recycler_view);
 
-
-        IRvCellWarehouse.getInstance().register("0", AdapterCell1.class);
-        IRvCellWarehouse.getInstance().register("1", AdapterCell2.class);
-
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         for (int i = 0; i < 50; i ++){
-            RvSmartBaseCell model = new RvSmartBaseCell(i % 2 + "");
+            AdpModel model = new AdpModel(i % 2 + "");
+            model.i = i + "";
             list.add(model);
         }
 
