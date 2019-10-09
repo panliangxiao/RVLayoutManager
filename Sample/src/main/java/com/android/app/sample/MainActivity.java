@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button pickerButton;
     private Button tantanButton;
+    private Button adapterButton;
 
 
     @Override
@@ -33,6 +34,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, CardSwipeActivity.class));
+            }
+        });
+
+        adapterButton = findViewById(R.id.button_adapter);
+
+        adapterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, AdapterActivity.class));
             }
         });
     }

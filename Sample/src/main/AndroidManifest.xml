@@ -20,6 +20,8 @@
         <activity android:name=".CardSwipeActivity" />
 
         <activity android:name=".PickerActivity" />
+
+        <activity android:name=".AdapterActivity" />
     </application>
 
 </manifest>
