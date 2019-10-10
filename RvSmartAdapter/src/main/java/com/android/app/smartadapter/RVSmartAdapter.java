@@ -44,7 +44,6 @@ public class RVSmartAdapter<T extends IRvSmartCell> extends RecyclerView.Adapter
         try {
             Class<? extends IRvSmartBinder> clz = IRvCellWarehouse.getInstance().getHolder(type);
             IRvSmartBinder holder = clz.newInstance();
-            Log.e("RVSmartAdapter", " : " + type);
             return createViewHolder(holder, viewGroup.getContext(), viewGroup);
         }catch (Throwable error){
 
