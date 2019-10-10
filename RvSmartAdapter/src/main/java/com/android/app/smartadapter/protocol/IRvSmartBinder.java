@@ -7,6 +7,11 @@ import android.view.ViewGroup;
 
 import com.android.app.smartadapter.cell.IRvSmartCell;
 
+/**
+ * holder的桥接接口定义相关方法模板
+ * @param <T>
+ * @param <V>
+ */
 public interface IRvSmartBinder<T extends IRvSmartCell, V extends View> {
 
     @NonNull
