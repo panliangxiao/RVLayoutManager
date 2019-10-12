@@ -14,7 +14,7 @@ import com.android.app.smartadapter.cell.IRvSmartCell;
 /**
  * cell样式2
  */
-public class AdapterCell2 implements IRvSmartBinder<AdpModel, View> {
+public class AdapterCell2 implements IRvSmartBinder<AdpModel2, View> {
 
     private Button textView;
 
@@ -27,12 +27,12 @@ public class AdapterCell2 implements IRvSmartBinder<AdpModel, View> {
     }
 
     @Override
-    public void mountView(@NonNull AdpModel data, @NonNull View view) {
-        textView.setText("样式" + data.getType() + " : " + data.i);
+    public void mountView(@NonNull AdpModel2 data, @NonNull View view) {
+        textView.setText("样式" + data.getType() + " : " + data.i + data.name);
     }
 
     @Override
-    public void unmountView(@NonNull AdpModel data, @NonNull View view) {
+    public void unmountView(@NonNull AdpModel2 data, @NonNull View view) {
 
     }
 }

@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.android.app.sample.model.AdpModel;
+import com.android.app.sample.model.AdpModel2;
 import com.android.app.smartadapter.RVSmartAdapter;
 import com.android.app.smartadapter.cell.IRvSmartCell;
 
@@ -28,9 +29,17 @@ public class AdapterActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         for (int i = 0; i < 50; i ++){
-            AdpModel model = new AdpModel(i % 2 + "");
-            model.i = i + "";
-            list.add(model);
+            if (i % 2 == 0) {
+                AdpModel model = new AdpModel(i % 2 +"");
+                model.i = i + "";
+                list.add(model);
+            }else if (i % 2 == 1){
+                AdpModel2 model = new AdpModel2(i % 2 + "");
+                model.i = i + "";
+                model.name = "pan";
+                list.add(model);
+            }
+
         }
 
         RVSmartAdapter<IRvSmartCell> smartAdapter = new RVSmartAdapter<>();
