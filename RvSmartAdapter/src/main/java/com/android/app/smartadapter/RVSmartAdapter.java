@@ -4,15 +4,14 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v4.util.ArrayMap;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.android.app.smartadapter.protocol.IRvSmartBinder;
 import com.android.app.smartadapter.cell.IRvSmartCell;
-import com.android.app.smartadapter.core.IRvCellWarehouse;
 import com.android.app.smartadapter.holder.RvSmartHolder;
+import com.android.app.smartadapter.protocol.IRvSmartBinder;
+import com.android.app.smartadapter.protocol.RvSmartBinderResolver;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +29,8 @@ public class RVSmartAdapter<T extends IRvSmartCell> extends RecyclerView.Adapter
     //存储cell type 到id之间的对应
     private final Map<String, Integer> mStrKeys = new ArrayMap<>(64);
 
+    private RvSmartBinderResolver<? extends IRvSmartBinder<T, ? extends View>> rvSmartBinderResolver = new RvSmartBinderResolver<>();
+
 
     public void setData(List<T> list){
         mDataList.clear();
@@ -41,14 +42,8 @@ public class RVSmartAdapter<T extends IRvSmartCell> extends RecyclerView.Adapter
     @Override
     public RvSmartHolder<T, ? extends View> onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         String type = getCellTypeFromItemType(i);
-        try {
-            Class<? extends IRvSmartBinder> clz = IRvCellWarehouse.getInstance().getHolder(type);
-            IRvSmartBinder holder = clz.newInstance();
-            return createViewHolder(holder, viewGroup.getContext(), viewGroup);
-        }catch (Throwable error){
-
-        }
-        return null;
+        IRvSmartBinder<T, ? extends View> binder = rvSmartBinderResolver.create(type);
+        return createViewHolder(binder, viewGroup.getContext(), viewGroup);
     }
 
     public <V extends View> RvSmartHolder<T, V> createViewHolder(
