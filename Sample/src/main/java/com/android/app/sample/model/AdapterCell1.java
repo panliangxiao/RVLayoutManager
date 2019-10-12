@@ -5,11 +5,10 @@ import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.android.app.sample.R;
-import com.android.app.smartadapter.protocol.IRvSmartBinder;
+import com.android.app.smartadapter.core.protocol.IRvSmartBinder;
 
 /**
  * cell样式1

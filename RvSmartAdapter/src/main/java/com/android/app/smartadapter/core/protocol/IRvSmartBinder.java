@@ -1,4 +1,4 @@
-package com.android.app.smartadapter.protocol;
+package com.android.app.smartadapter.core.protocol;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

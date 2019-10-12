@@ -3,7 +3,7 @@ package com.android.app.smartadapter.core;
 import android.view.View;
 
 import com.android.app.smartadapter.cell.IRvSmartCell;
-import com.android.app.smartadapter.protocol.IRvSmartBinder;
+import com.android.app.smartadapter.core.protocol.IRvSmartBinder;
 
 import java.util.HashMap;
 
@@ -21,12 +21,12 @@ public class RvCellWarehouse {
         private static final RvCellWarehouse instance = new RvCellWarehouse();
     }
 
-    public void register(String type, Class<? extends IRvSmartBinder<? extends IRvSmartCell, ? extends View>> clz){
+    public <T extends IRvSmartCell> void register(String type, Class<? extends IRvSmartBinder<T, ? extends View>> clz){
         mHolderCenter.put(type, clz);
     }
 
-    public Class<? extends IRvSmartBinder<? extends IRvSmartCell, ? extends View>> getCell(String type){
-        return mHolderCenter.get(type);
+    public <T extends IRvSmartCell> Class<? extends IRvSmartBinder<T, ? extends View>> getCell(String type){
+        return (Class<? extends IRvSmartBinder<T, ? extends View>>) mHolderCenter.get(type);
     }
 
 }

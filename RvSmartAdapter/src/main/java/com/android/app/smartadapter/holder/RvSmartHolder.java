@@ -5,7 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.android.app.smartadapter.cell.IRvSmartCell;
-import com.android.app.smartadapter.protocol.IRvSmartBinder;
+import com.android.app.smartadapter.core.protocol.IRvSmartBinder;
 
 public class RvSmartHolder<T extends IRvSmartCell, V extends View> extends RecyclerView.ViewHolder {
 

@@ -10,8 +10,8 @@ import android.view.ViewGroup;
 
 import com.android.app.smartadapter.cell.IRvSmartCell;
 import com.android.app.smartadapter.holder.RvSmartHolder;
-import com.android.app.smartadapter.protocol.IRvSmartBinder;
-import com.android.app.smartadapter.protocol.RvSmartBinderResolver;
+import com.android.app.smartadapter.core.protocol.IRvSmartBinder;
+import com.android.app.smartadapter.core.protocol.RvSmartBinderResolver;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +29,7 @@ public class RVSmartAdapter<T extends IRvSmartCell> extends RecyclerView.Adapter
     //存储cell type 到id之间的对应
     private final Map<String, Integer> mStrKeys = new ArrayMap<>(64);
 
-    private RvSmartBinderResolver<? extends IRvSmartBinder<T, ? extends View>> rvSmartBinderResolver = new RvSmartBinderResolver<>();
+    private RvSmartBinderResolver<T> rvSmartBinderResolver = new RvSmartBinderResolver<>();
 
 
     public void setData(List<T> list){
