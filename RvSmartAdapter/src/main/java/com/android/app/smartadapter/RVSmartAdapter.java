@@ -93,7 +93,7 @@ public class RVSmartAdapter<T extends IRvSmartCell> extends RecyclerView.Adapter
     }
 
     @Override
-    public void onViewRecycled(@NonNull RvSmartHolder holder) {
+    public void onViewRecycled(@NonNull RvSmartHolder<T, ? extends View> holder) {
         super.onViewRecycled(holder);
         holder.unBindHolder();
     }
