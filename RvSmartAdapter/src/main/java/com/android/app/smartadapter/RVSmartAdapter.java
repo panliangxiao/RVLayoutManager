@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.app.smartadapter.cell.IRvSmartCell;
+import com.android.app.smartadapter.core.resolver.IResolver;
 import com.android.app.smartadapter.holder.RvSmartHolder;
 import com.android.app.smartadapter.core.protocol.IRvSmartBinder;
 import com.android.app.smartadapter.core.protocol.RvSmartBinderResolver;
@@ -29,13 +30,17 @@ public class RVSmartAdapter<T extends IRvSmartCell> extends RecyclerView.Adapter
     //存储cell type 到id之间的对应
     private final Map<String, Integer> mStrKeys = new ArrayMap<>(64);
 
-    private RvSmartBinderResolver<T> rvSmartBinderResolver = new RvSmartBinderResolver<>();
+    private IResolver<T> rvSmartBinderResolver = new RvSmartBinderResolver<>();
 
 
     public void setData(List<T> list){
         mDataList.clear();
         mDataList.addAll(list);
         notifyDataSetChanged();
+    }
+
+    public void setBinderResolver(IResolver<T> rvSmartBinderResolver) {
+        this.rvSmartBinderResolver = rvSmartBinderResolver;
     }
 
     @NonNull
