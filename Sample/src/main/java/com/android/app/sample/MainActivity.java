@@ -1,6 +1,5 @@
 package com.android.app.sample;
 
-import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,6 +12,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Button pickerButton;
     private Button tantanButton;
+    private Button galleryButton;
+    private Button adapterButton;
 
 
     @Override
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         pickerButton = findViewById(R.id.button_picker);
         tantanButton = findViewById(R.id.button_tantan);
+        galleryButton = findViewById(R.id.button_gallery);
 
         pickerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,6 +35,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, CardSwipeActivity.class));
+            }
+        });
+
+        adapterButton = findViewById(R.id.button_adapter);
+
+        adapterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, AdapterActivity.class));
+            }
+        });
+
+        galleryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, GalleryActivity.class));
             }
         });
     }

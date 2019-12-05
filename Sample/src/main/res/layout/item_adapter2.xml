@@ -1,0 +1,10 @@
+<Button xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tv_text"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:textSize="40sp"
+    android:text="111111"
+    android:gravity="center"
+    android:textStyle="bold"
+    android:textColor="@android:color/black"
+    />
