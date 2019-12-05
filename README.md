@@ -47,3 +47,9 @@ CardSwipeLayoutManager swipeLayoutManager = new CardSwipeLayoutManager(new OnCar
 mRecyclerView.setLayoutManager(swipeLayoutManager);
 mRecyclerView.setAdapter(mAdapter);
 ```
+
+## 画廊效果GalleryLayoutManager
+
+### 效果图
+<img src="https://pic1.58cdn.com.cn/nowater/fangfe/n_v2383c9f73edb5481eb986fd4a44fc35f4.png" width = "216" height = "384" alt="画廊效果"
+align=center>
