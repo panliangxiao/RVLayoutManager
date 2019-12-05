@@ -1,1 +1,1 @@
-include ':Sample', ':LayoutManager', ':RvSmartAdapter'
+include ':Sample', ':LayoutManager', ':RvSmartAdapter', ':RvCommonAdapter'
