@@ -22,6 +22,8 @@
 
         <activity android:name=".PickerActivity" />
 
+        <activity android:name=".GalleryActivity" />
+
         <activity android:name=".AdapterActivity" />
     </application>
 
