@@ -2,13 +2,13 @@
 ## 滚轮效果时间选择器PickerLayoutManager
 ### 特点
 - 支持指定滚轮固定个数显示
-```
+```java
 mPickerLayoutManager2 = new PickerLayoutManager(this, PickerLayoutManager.VERTICAL, false,3,0.4f,true);
 mRecyclerView2.setLayoutManager(mPickerLayoutManager2);
 mRecyclerView2.setAdapter(new MyAdapter(mMinutes));
 ```
 - 支持填充RecyclerView大小显示滚轮
-```
+```java
 mPickerLayoutManager2 = new PickerLayoutManager(this, PickerLayoutManager.VERTICAL, false,0,0.4f,true);
 mRecyclerView2.setLayoutManager(mPickerLayoutManager2);
 mRecyclerView2.setAdapter(new MyAdapter(mMinutes));
@@ -25,7 +25,7 @@ align=center>
 ### 特点
 - 精简api 只需一个LayoutManager搞定
 ### 使用
-```
+```java
 CardSwipeLayoutManager swipeLayoutManager = new CardSwipeLayoutManager(new OnCardSwipeListener() {
     @Override
     public void onSwiping(RecyclerView.ViewHolder viewHolder, float ratio, int direction) {
