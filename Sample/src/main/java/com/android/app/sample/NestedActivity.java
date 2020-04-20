@@ -21,9 +21,9 @@ public class NestedActivity extends AppCompatActivity {
         setContentView(R.layout.activity_nested);
         recyclerView = findViewById(R.id.recycler_parent);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.addOnItemTouchListener(new SwipeItemTouchListener(recyclerView));
+        recyclerView.addOnItemTouchListener(new SwipeItemTouchListener());
         adapter = new NestedAdapter(this);
-        for (int i = 0; i < 20 ; i ++){
+        for (int i = 0; i < 21 ; i ++){
             ll.add(i + " : pos");
         }
         adapter.setDataList(ll);

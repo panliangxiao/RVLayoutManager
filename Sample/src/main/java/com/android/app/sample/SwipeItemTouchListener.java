@@ -1,7 +1,6 @@
 package com.android.app.sample;
 
 import android.support.annotation.NonNull;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
 import android.view.View;
@@ -13,18 +12,12 @@ import android.view.ViewGroup;
  */
 public class SwipeItemTouchListener implements RecyclerView.OnItemTouchListener {
 
-    private LinearLayoutManager layoutManager;
-
-    public SwipeItemTouchListener(RecyclerView recyclerView) {
-        if (recyclerView == null){
-            throw new RuntimeException("recyclerView is null!!!");
-        }
-        this.layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+    public SwipeItemTouchListener() {
     }
 
     @Override
     public boolean onInterceptTouchEvent(@NonNull RecyclerView recyclerView, @NonNull MotionEvent motionEvent) {
-        recyclerView.requestDisallowInterceptTouchEvent(findScrollableChildViewUnder(motionEvent) != null);
+        recyclerView.requestDisallowInterceptTouchEvent(findScrollableChildViewUnder(recyclerView, motionEvent) != null);
         return false;
     }
 
@@ -38,26 +31,18 @@ public class SwipeItemTouchListener implements RecyclerView.OnItemTouchListener 
 
     }
 
-    private View findScrollableChildViewUnder(MotionEvent event) {
+    private View findScrollableChildViewUnder(RecyclerView recyclerView, MotionEvent event) {
+        if (recyclerView == null) {
+            return null;
+        }
         final int x = (int) event.getX();
         final int y = (int) event.getY();
-        final int first = getLayoutManager().findFirstVisibleItemPosition();
-        final int last = getLayoutManager().findLastVisibleItemPosition();
-        for (int i = 0; i <= last - first; i++) {
-            View child = getLayoutManager().getChildAt(i);
-            if (child instanceof ViewGroup) {
-                float translationX = child.getTranslationX();
-                float translationY = child.getTranslationY();
-                if (x >= (float) child.getLeft() + translationX
-                        && x <= (float) child.getRight() + translationX
-                        && y >= (float) child.getTop() + translationY
-                        && y <= (float) child.getBottom() + translationY) {
-                    if (findCanScrollView(child) != null) {
-                        return child;
-                    }
-                }
-            }
+        View child = recyclerView.findChildViewUnder(x, y);
+
+        if (findCanScrollView(child) != null) {
+            return child;
         }
+
         return null;
     }
 
@@ -81,7 +66,4 @@ public class SwipeItemTouchListener implements RecyclerView.OnItemTouchListener 
         }
     }
 
-    public LinearLayoutManager getLayoutManager() {
-        return layoutManager;
-    }
 }

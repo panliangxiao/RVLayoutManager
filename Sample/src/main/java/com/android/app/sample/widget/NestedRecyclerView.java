@@ -6,10 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.view.NestedScrollingParent2;
 import android.support.v4.view.NestedScrollingParentHelper;
 import android.support.v4.view.ViewCompat;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -71,36 +68,12 @@ public class NestedRecyclerView extends RecyclerView implements NestedScrollingP
 
     @Override
     public void onNestedPreScroll(@NonNull View target, int dx, int dy, @Nullable int[] consumed, int type) {
-        int offset = Integer.MAX_VALUE;
-        if (target instanceof RecyclerView) {
 
-            if (((RecyclerView) target).getLayoutManager() instanceof LinearLayoutManager) {
-                LinearLayoutManager layoutManager = (LinearLayoutManager) ((RecyclerView) target).getLayoutManager();
-                if (dy < 0) {
-                    offset = layoutManager.findFirstCompletelyVisibleItemPosition();
-                } else {
-                    offset = layoutManager.findLastCompletelyVisibleItemPosition();
-                }
-            } else if (((RecyclerView) target).getLayoutManager() instanceof GridLayoutManager) {
-                GridLayoutManager layoutManager = (GridLayoutManager) ((RecyclerView) target).getLayoutManager();
-                if (dy < 0) {
-                    offset = layoutManager.findFirstCompletelyVisibleItemPosition();
-                } else {
-                    offset = layoutManager.findLastCompletelyVisibleItemPosition();
-                }
-            } else if (((RecyclerView) target).getLayoutManager() instanceof StaggeredGridLayoutManager) {
-                StaggeredGridLayoutManager layoutManager = (StaggeredGridLayoutManager) ((RecyclerView) target).getLayoutManager();
-                if (dy < 0) {
-                    offset = layoutManager.findFirstCompletelyVisibleItemPositions(null)[0];
-                } else {
-                    offset = layoutManager.findFirstCompletelyVisibleItemPositions(null)[layoutManager.getSpanCount() - 1];
-                }
-            }
-            if (offset == 0 || offset == ((RecyclerView) target).getLayoutManager().getItemCount() -1 ){
-                scrollBy(0, dy);
-                if (consumed != null) {
-                    consumed[1] = dy;
-                }
+        // dy > 0 向上活动 dy < 0 向下滑动
+        if (!target.canScrollVertically(dy)){
+            scrollBy(0, dy);
+            if (consumed != null) {
+                consumed[1] = dy;
             }
         }
         Log.d(TAG, "onNestedPreScroll:::dy::" + dy + ",,consumed[1]::" + (consumed != null ? consumed[1] : ""));
