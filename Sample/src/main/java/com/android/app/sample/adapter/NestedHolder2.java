@@ -25,7 +25,6 @@ public class NestedHolder2 extends AbsBaseHolder<String> {
     public NestedHolder2(@NonNull View itemView) {
         super(itemView);
         viewPager = itemView.findViewById(R.id.container);
-        fragments.add(new HolderFragment());
     }
 
     @Override
@@ -34,6 +33,8 @@ public class NestedHolder2 extends AbsBaseHolder<String> {
         if (itemView.getContext() instanceof FragmentActivity){
             adapter = new FragmentAdapter(((FragmentActivity) itemView.getContext()).getSupportFragmentManager());
             viewPager.setAdapter(adapter);
+            fragments.clear();
+            fragments.add(new HolderFragment());
             adapter.setFragments(fragments);
 
         }
