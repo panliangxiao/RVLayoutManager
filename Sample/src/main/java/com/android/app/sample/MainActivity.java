@@ -15,6 +15,8 @@ public class MainActivity extends AppCompatActivity {
     private Button galleryButton;
     private Button adapterButton;
 
+    private Button mNestedButton;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,6 +53,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, GalleryActivity.class));
+            }
+        });
+
+        mNestedButton = findViewById(R.id.button_nested);
+        mNestedButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, NestedActivity.class));
             }
         });
     }

@@ -25,6 +25,8 @@
         <activity android:name=".GalleryActivity" />
 
         <activity android:name=".AdapterActivity" />
+
+        <activity android:name=".NestedActivity" />
     </application>
 
 </manifest>

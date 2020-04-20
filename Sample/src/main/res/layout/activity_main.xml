@@ -37,6 +37,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="适配器封装"/>
+
+            <Button
+                android:id="@+id/button_nested"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="RecyclerView嵌套"/>
         </LinearLayout>
     </ScrollView>
 
