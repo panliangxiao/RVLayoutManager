@@ -22,15 +22,18 @@ public class HolderFragment extends Fragment {
     private List<String> ll = new ArrayList<>();
     private NestedChildAdapter adapter;
 
+    public HolderFragment() {
+        for (int i = 0; i < 50 ; i++){
+            ll.add("child : " + i);
+        }
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.holder_ifragment, container, false);
         recyclerView = view.findViewById(R.id.recycler_child);
         adapter = new NestedChildAdapter(getContext());
-        for (int i = 0; i < 50 ; i++){
-            ll.add("child : " + i);
-        }
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter.setDataList(ll);
         recyclerView.setAdapter(adapter);

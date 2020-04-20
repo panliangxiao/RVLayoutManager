@@ -63,7 +63,7 @@ public class NestedRecyclerView extends RecyclerView implements NestedScrollingP
 
     @Override
     public void onNestedScroll(@NonNull View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed, int type) {
-        Log.d(TAG, "onStartNestedScroll");
+        Log.d(TAG, "onNestedScroll dxConsumed = " + dxConsumed + ",, dyConsumed = " + dyConsumed + ",,dxUnconsumed = " + dxUnconsumed + ",,dyUnconsumed" + dyUnconsumed);
     }
 
     @Override
