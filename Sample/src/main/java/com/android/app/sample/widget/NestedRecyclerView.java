@@ -70,7 +70,13 @@ public class NestedRecyclerView extends RecyclerView implements NestedScrollingP
     public void onNestedPreScroll(@NonNull View target, int dx, int dy, @Nullable int[] consumed, int type) {
 
         // dy > 0 向上活动 dy < 0 向下滑动
-        if (!target.canScrollVertically(dy)){
+        boolean consum = false;
+        if (dy > 0){
+            consum = canScrollVertically(dy) || !target.canScrollVertically(dy);
+        } else {
+            consum = !target.canScrollVertically(dy);
+        }
+        if (consum){
             scrollBy(0, dy);
             if (consumed != null) {
                 consumed[1] = dy;
