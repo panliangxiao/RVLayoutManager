@@ -24,6 +24,8 @@ public abstract class RvAbsBaseAdapter<T> extends RecyclerView.Adapter<AbsBaseHo
 
     protected Context mContext;
 
+    protected RecyclerView mRecyclerView;
+
     protected OnItemClickListener<T> onItemClickListener;
 
     public RvAbsBaseAdapter(Context context) {
@@ -87,7 +89,14 @@ public abstract class RvAbsBaseAdapter<T> extends RecyclerView.Adapter<AbsBaseHo
     public void onBindViewHolder(@NonNull AbsBaseHolder<T> tAbsBaseHolder, int i) {
         T bean = mDataList.get(i);
         Bundle bundle = new Bundle();
+        bundle.putInt("height", mRecyclerView == null ? 0 : mRecyclerView.getMeasuredHeight());
         tAbsBaseHolder.bindHolder(bean, bundle, i);
+    }
+
+    @Override
+    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+        mRecyclerView = recyclerView;
     }
 
     @Override

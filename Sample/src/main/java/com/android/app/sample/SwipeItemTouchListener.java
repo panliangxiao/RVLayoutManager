@@ -17,6 +17,7 @@ public class SwipeItemTouchListener implements RecyclerView.OnItemTouchListener 
 
     @Override
     public boolean onInterceptTouchEvent(@NonNull RecyclerView recyclerView, @NonNull MotionEvent motionEvent) {
+        //判断当前事件坐标点下是否包含RecyclerView
         recyclerView.requestDisallowInterceptTouchEvent(findScrollableChildViewUnder(recyclerView, motionEvent) != null);
         return false;
     }

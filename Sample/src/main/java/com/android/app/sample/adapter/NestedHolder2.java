@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.android.app.commonadapter.holder.AbsBaseHolder;
 import com.android.app.sample.R;
@@ -25,11 +26,14 @@ public class NestedHolder2 extends AbsBaseHolder<String> {
     public NestedHolder2(@NonNull View itemView) {
         super(itemView);
         viewPager = itemView.findViewById(R.id.container);
+
     }
 
     @Override
     public void bindHolder(String bean, Bundle extra, int position) {
-
+        int height = extra.getInt("height", 0);
+        ViewGroup.LayoutParams params = itemView.getLayoutParams();
+        params.height = height;
         if (itemView.getContext() instanceof FragmentActivity){
             adapter = new FragmentAdapter(((FragmentActivity) itemView.getContext()).getSupportFragmentManager());
             viewPager.setAdapter(adapter);
