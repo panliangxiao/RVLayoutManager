@@ -27,10 +27,11 @@ public class NestedActivity extends AppCompatActivity {
         //添加Android自带的分割线
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         adapter = new NestedAdapter(this);
-        for (int i = 0; i < 21; i++) {
+        for (int i = 0; i < 10; i++) {
             ll.add("pos : " + i);
         }
         adapter.setDataList(ll);
         recyclerView.setAdapter(adapter);
+        recyclerView.requestFocus(); //设置焦点不需要
     }
 }

@@ -33,6 +33,7 @@ public class HolderFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.holder_ifragment, container, false);
         recyclerView = view.findViewById(R.id.recycler_child);
+        recyclerView.setFocusableInTouchMode(false); //设置不需要焦点
         adapter = new NestedChildAdapter(getContext());
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter.setDataList(ll);
