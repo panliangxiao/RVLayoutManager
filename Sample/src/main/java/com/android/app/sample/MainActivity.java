@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.android.app.sample.nested.NestedActivity;
 import com.android.app.sample.suspension.SuspensionActivity;
 
 public class MainActivity extends AppCompatActivity {

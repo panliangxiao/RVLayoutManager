@@ -1,4 +1,4 @@
-package com.android.app.sample.adapter;
+package com.android.app.sample.nested;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -9,19 +9,29 @@ import android.view.ViewGroup;
 import com.android.app.commonadapter.RvAbsBaseAdapter;
 import com.android.app.commonadapter.holder.AbsBaseHolder;
 import com.android.app.sample.R;
+import com.android.app.sample.nested.NestedHolder1;
+import com.android.app.sample.nested.NestedHolder2;
 
-public class NestedChildAdapter extends RvAbsBaseAdapter<String> {
+public class NestedAdapter extends RvAbsBaseAdapter<String> {
     public static final int ITEM_1 = 0;
     public static final int ITEM_2 = 1;
 
-    public NestedChildAdapter(Context context) {
+    public NestedAdapter(Context context) {
         super(context);
     }
 
     @Override
     public AbsBaseHolder<String> createHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.nested_item1, viewGroup, false);
-        return new NestedHolder1(view);
+        View view;
+        if (i == ITEM_1) {
+            view = LayoutInflater.from(mContext).inflate(R.layout.nested_item1, viewGroup, false);
+            return new NestedHolder1(view);
+
+        }else if (i == ITEM_2){
+            view = LayoutInflater.from(mContext).inflate(R.layout.nested_item2, viewGroup, false);
+            return new NestedHolder2(view);
+        }
+        return null;
     }
 
     @Override

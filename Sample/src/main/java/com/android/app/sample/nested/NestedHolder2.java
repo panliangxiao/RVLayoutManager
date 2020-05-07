@@ -1,4 +1,4 @@
-package com.android.app.sample.adapter;
+package com.android.app.sample.nested;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import com.android.app.commonadapter.holder.AbsBaseHolder;
 import com.android.app.sample.R;
 import com.android.app.sample.fragment.HolderFragment;
-import com.android.app.sample.fragment.HolderFragment2;
 
 import java.util.ArrayList;
 import java.util.List;

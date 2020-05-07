@@ -1,4 +1,4 @@
-package com.android.app.sample.adapter;
+package com.android.app.sample.nested;
 
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;

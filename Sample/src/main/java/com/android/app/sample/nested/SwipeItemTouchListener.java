@@ -1,4 +1,4 @@
-package com.android.app.sample;
+package com.android.app.sample.nested;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;

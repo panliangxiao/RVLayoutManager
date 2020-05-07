@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.app.sample.R;
-import com.android.app.sample.adapter.NestedChildAdapter;
+import com.android.app.sample.nested.NestedChildAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

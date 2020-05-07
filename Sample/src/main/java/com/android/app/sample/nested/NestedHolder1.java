@@ -1,4 +1,4 @@
-package com.android.app.sample.adapter;
+package com.android.app.sample.nested;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
