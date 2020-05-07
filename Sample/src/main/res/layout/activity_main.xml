@@ -43,6 +43,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="RecyclerView嵌套"/>
+
+            <Button
+                android:id="@+id/button_suspension"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="顶部悬浮效果"/>
         </LinearLayout>
     </ScrollView>
 

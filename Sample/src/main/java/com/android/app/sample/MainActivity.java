@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.android.app.sample.suspension.SuspensionActivity;
+
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -16,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
     private Button adapterButton;
 
     private Button mNestedButton;
+
+    private Button mSuspensionButton;
 
 
     @Override
@@ -61,6 +65,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, NestedActivity.class));
+            }
+        });
+
+        mSuspensionButton = findViewById(R.id.button_suspension);
+        mSuspensionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, SuspensionActivity.class));
             }
         });
     }
