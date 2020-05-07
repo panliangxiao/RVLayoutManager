@@ -90,6 +90,7 @@ public class SectionDecoration extends RecyclerView.ItemDecoration {
     /**
      * 判断是不是组中的第一个位置
      * 通过对比前一个组的groupName 是否相等
+     *
      * @param pos
      * @return
      */
@@ -102,8 +103,8 @@ public class SectionDecoration extends RecyclerView.ItemDecoration {
         return !TextUtils.equals(prevGroupId, groupId);
     }
 
-    private String getGroupName(int pos){
-        if (mListener == null){
+    private String getGroupName(int pos) {
+        if (mListener == null) {
             return "";
         }
         return mListener.groupName(pos);
