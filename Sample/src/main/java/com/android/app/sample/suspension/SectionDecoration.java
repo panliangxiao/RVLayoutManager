@@ -10,7 +10,7 @@ import android.text.TextUtils;
 import android.view.View;
 
 /**
- * item修饰器用于悬浮效果
+ * 自定义item修饰器用于悬浮效果
  */
 public class SectionDecoration extends RecyclerView.ItemDecoration {
 
