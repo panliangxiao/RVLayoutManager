@@ -82,14 +82,18 @@ public class SectionDecoration extends RecyclerView.ItemDecoration {
         if (TextUtils.isEmpty(pinyin))
             return;
         //只有是同一组的第一个才显示悬浮栏
-        if (isFirstInGroup(pos)) {
+        if (firstInGroup(pos)) {
             outRect.top = mHeight;
         }
     }
 
-    //判断是不是组中的第一个位置
-    //根据前一个组名，判断当前是否为新的组
-    private boolean isFirstInGroup(int pos) {
+    /**
+     * 判断是不是组中的第一个位置
+     * 通过对比前一个组的groupName 是否相等
+     * @param pos
+     * @return
+     */
+    private boolean firstInGroup(int pos) {
         if (pos == 0) {
             return true;
         }
