@@ -1,7 +1,9 @@
 package com.android.app.sample.nested;
 
+import android.graphics.Rect;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +14,24 @@ import android.view.ViewGroup;
  */
 public class SwipeItemTouchListener implements RecyclerView.OnItemTouchListener {
 
+    Rect xy = new Rect();
+
     public SwipeItemTouchListener() {
     }
 
     @Override
     public boolean onInterceptTouchEvent(@NonNull RecyclerView recyclerView, @NonNull MotionEvent motionEvent) {
         //判断当前事件坐标点下是否包含RecyclerView
-        recyclerView.requestDisallowInterceptTouchEvent(findScrollableChildViewUnder(recyclerView, motionEvent) != null);
+        boolean hasScrollable = false;
+
+        View view = findScrollableChildViewUnder(recyclerView, motionEvent);
+        if (view != null){
+            view.getGlobalVisibleRect(xy);
+            hasScrollable = (motionEvent.getRawX() > xy.left && motionEvent.getRawX() < xy.right) && (motionEvent.getRawY() > xy.top && motionEvent.getRawY() < xy.bottom);
+            Log.i("SwipeItemTouchListener", "motionEvent.getRawX() : " + motionEvent.getRawX() + "xy.left : " + xy.left + " xy.right : " + xy.right
+                    + " motionEvent.getRawY() : " + motionEvent.getRawY() + " xy.top : " + xy.top + " xy.bottom : " + xy.bottom);
+        }
+        recyclerView.requestDisallowInterceptTouchEvent(hasScrollable);
         return false;
     }
 
@@ -40,11 +53,7 @@ public class SwipeItemTouchListener implements RecyclerView.OnItemTouchListener 
         final int y = (int) event.getY();
         View child = recyclerView.findChildViewUnder(x, y);
 
-        if (findCanScrollView(child) != null) {
-            return child;
-        }
-
-        return null;
+        return findCanScrollView(child);
     }
 
     private View findCanScrollView(View v) {
