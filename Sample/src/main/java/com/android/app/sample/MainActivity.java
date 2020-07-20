@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.android.app.sample.anim.AnimActivity;
 import com.android.app.sample.nested.NestedActivity;
 import com.android.app.sample.suspension.SuspensionActivity;
 
@@ -74,6 +75,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, SuspensionActivity.class));
+            }
+        });
+
+        findViewById(R.id.button_scroll).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, AnimActivity.class));
             }
         });
     }

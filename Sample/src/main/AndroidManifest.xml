@@ -29,6 +29,8 @@
         <activity android:name=".nested.NestedActivity" />
 
         <activity android:name=".suspension.SuspensionActivity"/>
+
+        <activity android:name=".anim.AnimActivity"/>
     </application>
 
 </manifest>
