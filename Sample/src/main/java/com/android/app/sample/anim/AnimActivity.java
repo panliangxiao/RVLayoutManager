@@ -2,83 +2,47 @@ package com.android.app.sample.anim;
 
 import android.animation.Animator;
 import android.animation.AnimatorSet;
-import android.animation.LayoutTransition;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.annotation.SuppressLint;
-import android.os.Handler;
-import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.AnimationSet;
-import android.view.animation.BounceInterpolator;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.app.sample.R;
+import com.android.app.sample.anim.widget.AbsBannerAdapter;
+import com.android.app.sample.anim.widget.BannerLayout;
 
 public class AnimActivity extends AppCompatActivity {
 
-    private LinearLayout mViewContainer;
-    private int mViewCount = 0;
-    private boolean isTransitionFinish = true;
+    private BannerLayout mViewContainer;
 
-    private static final int REFRESH = 0X001;
+    private int padding = 5;
 
-    private Handler mHandler = new Handler(){
+    AbsBannerAdapter adapter = new AbsBannerAdapter() {
         @Override
-        public void dispatchMessage(Message msg) {
-            switch (msg.what){
-                case REFRESH:
-                    addViewToParent(null);
-                    mHandler.sendEmptyMessageDelayed(REFRESH, 3000);
-                    break;
-            }
+        public int getCount() {
+            return 1;
+        }
+
+        @Override
+        public View getView(Context context, int index) {
+            View view1 = LayoutInflater.from(AnimActivity.this).inflate(R.layout.item_adapter1, mViewContainer, false);
+            ((TextView) view1).setText("添加" + index);
+            return view1;
         }
     };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.anim_activity);
-        mViewContainer = (LinearLayout) findViewById(R.id.view_container);
-        LayoutTransition mLayoutTransition = new LayoutTransition();
-        mLayoutTransition.setAnimator(LayoutTransition.APPEARING, getAppearingAnimation());
-        mLayoutTransition.setDuration(LayoutTransition.APPEARING, 400);
-        mLayoutTransition.setStartDelay(LayoutTransition.APPEARING, 0);//源码中带有默认300毫秒的延时，需要移除，不然view添加效果不好！！
-
-        mLayoutTransition.setAnimator(LayoutTransition.DISAPPEARING, getDisappearingAnimation());
-        mLayoutTransition.setDuration(LayoutTransition.DISAPPEARING, 400);
-        mLayoutTransition.setStartDelay(LayoutTransition.DISAPPEARING, 0);
-//
-//        mLayoutTransition.setAnimator(LayoutTransition.CHANGE_APPEARING, getAppearingChangeAnimation());
-//        mLayoutTransition.setDuration(200);
-//
-//        mLayoutTransition.setAnimator(LayoutTransition.CHANGE_DISAPPEARING, getDisappearingChangeAnimation());
-//        mLayoutTransition.setDuration(200);
-//
-//        mLayoutTransition.enableTransitionType(LayoutTransition.CHANGE_DISAPPEARING);
-//        mLayoutTransition.setStartDelay(LayoutTransition.CHANGE_DISAPPEARING, 0);//源码中带有默认300毫秒的延时，需要移除，不然view添加效果不好！！
-        mLayoutTransition.addTransitionListener(new LayoutTransition.TransitionListener() {
-            @Override
-            public void startTransition(LayoutTransition transition, ViewGroup container, View view, int transitionType) {
-                Log.i("zyq", "LayoutTransition:startTransition");
-            }
-
-            @Override
-            public void endTransition(LayoutTransition transition, ViewGroup container, View view, int transitionType) {
-                Log.i("zyq", "LayoutTransition:endTransition");
-                isTransitionFinish = true;
-            }
-        });
-        mViewContainer.setLayoutTransition(mLayoutTransition);
-        mHandler.sendEmptyMessageDelayed(REFRESH, 3000);
-
+        mViewContainer = findViewById(R.id.view_container);
+        mViewContainer.setAdapter(adapter);
     }
 
     private Animator getAppearingAnimation() {
@@ -121,38 +85,44 @@ public class AnimActivity extends AppCompatActivity {
 
     @SuppressLint("StringFormatInvalid")
     public void addViewToParent(View view) {
-        if (isTransitionFinish) {
-            isTransitionFinish = false;
-            if (mViewContainer.getChildCount() > 0){
-                mViewContainer.removeViewAt(0);
+        padding +=5;
+        mViewContainer.setPadding(padding, padding, padding, padding);
 
-            }
-            mViewContainer.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    View view1 = LayoutInflater.from(AnimActivity.this).inflate(R.layout.item_adapter1, mViewContainer, false);
-                    ((TextView) view1).setText("添加" + mViewCount);
-                    mViewContainer.addView(view1, 0);
-                    mViewCount++;
-                }
-            }, 400);
-
-        }
+//        if (isTransitionFinish) {
+//            isTransitionFinish = false;
+//            if (mViewContainer.getChildCount() > 0){
+//                mViewContainer.removeViewAt(0);
+//
+//            }
+//            mViewContainer.postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+//                    View view1 = LayoutInflater.from(AnimActivity.this).inflate(R.layout.item_adapter1, mViewContainer, false);
+//                    ((TextView) view1).setText("添加" + mViewCount);
+//                    mViewContainer.addView(view1, 0);
+//                    mViewCount++;
+//                }
+//            }, 400);
+//
+//        }
     }
 
     public void removeViewFromParent(View view) {
-        if (isTransitionFinish) {
-            if (mViewCount >= 1) {
-                isTransitionFinish = false;
-                mViewContainer.removeViewAt((0));
-                mViewCount--;
-            }
-        }
+        padding -=5;
+        mViewContainer.setPadding(padding, padding, padding, padding);
+
+//        if (isTransitionFinish) {
+//            if (mViewCount >= 1) {
+//                isTransitionFinish = false;
+//                mViewContainer.removeViewAt((0));
+//                mViewCount--;
+//            }
+//        }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mHandler.removeMessages(REFRESH);
+//        mHandler.removeMessages(REFRESH);
     }
 }

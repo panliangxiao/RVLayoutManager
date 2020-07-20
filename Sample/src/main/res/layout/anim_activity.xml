@@ -17,23 +17,24 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="addViewToParent"
-            android:text="添加" />
+            android:text="增加padding" />
 
         <Button
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:onClick="removeViewFromParent"
-            android:text="删除" />
+            android:text="减少padding" />
     </LinearLayout>
 
-    <LinearLayout
+    <com.android.app.sample.anim.widget.BannerLayout
         android:id="@+id/view_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="100dp"
         android:orientation="vertical"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:layout_gravity="center">
 
-    </LinearLayout>
+    </com.android.app.sample.anim.widget.BannerLayout>
 
 </LinearLayout>
