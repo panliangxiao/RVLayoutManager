@@ -48,7 +48,7 @@ public class RentalSocietyNotificationManager {
                     mNotificationManager.createNotificationChannel(notificationChannel);
                 }
 
-                mNotificationManager.notify(String.valueOf(System.currentTimeMillis()), (int) System.currentTimeMillis(), builder.build());
+                mNotificationManager.notify(String.valueOf(System.currentTimeMillis()), 111, builder.build());
             } catch (Throwable throwable) {
                 throwable.printStackTrace();
             }
