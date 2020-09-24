@@ -1,8 +1,12 @@
 package com.android.app.sample;
 
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -81,7 +85,18 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.button_scroll).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, AnimActivity.class));
+//                NotificationManagerCompat manager = NotificationManagerCompat.from(getApplicationContext());
+//                boolean isOpened = manager.areNotificationsEnabled();
+//                // 根据isOpened结果，判断是否需要提醒用户跳转AppInfo页面，去打开App通知权限
+//                Intent intent = new Intent();
+//                intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+//                Uri uri = Uri.fromParts("package", getApplication().getPackageName(), null);
+//                intent.setData(uri);
+//                startActivity(intent);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    RentalSocietyNotificationManager.notify(MainActivity.this, "", "1111", "", "3333");
+                }
             }
         });
     }
